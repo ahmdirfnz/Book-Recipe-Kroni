@@ -15,7 +15,7 @@
         }
 
         img {
-            max-width: 100%;
+            max-width: 50%;
             height: auto;
             display: block;
             margin: 0 auto;
@@ -29,6 +29,16 @@
 
         li {
             margin-bottom: 10px;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -63,6 +73,13 @@
     </ol>
 
     <!-- You can add more content or links here -->
+    <button onclick="goBack()">Back</button>
 
+    <!-- Script for the back button -->
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </body>
 </html>
