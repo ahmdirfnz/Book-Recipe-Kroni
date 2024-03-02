@@ -1,3 +1,5 @@
-document.getElementById('addRecipeBtn').addEventListener('click', function() {
-    document.getElementById('addRecipeForm').style.display = 'block';
+document.querySelectorAll('.addRecipeBtn').forEach(function(button) {
+    button.addEventListener('click', function() {
+        this.nextElementSibling.style.display = 'block';
+    });
 });
