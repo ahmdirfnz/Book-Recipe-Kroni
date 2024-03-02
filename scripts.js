@@ -4,4 +4,6 @@ document.querySelectorAll('.addRecipeBtn').forEach(function(button) {
     });
 });
 
-  
+function goBack() {
+    window.history.back();
+}
