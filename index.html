@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h1>Recipe Book ver 3</h1>
+        <h1>Recipe Book</h1>
     </header>
     <nav>
         <ul>
@@ -25,19 +25,6 @@
                 <li><a href="recipes/pancakes.html">Pancakes</a></li>
                 <li><a href="recipes/omelette.html">Omelette</a></li>
             </ul>
-            <button class="addRecipeBtn">Add Recipe</button>
-            <div class="addRecipeForm" style="display:none;">
-                <h2>Add Recipe</h2>
-                <form class="recipeForm">
-                    <label for="recipeName">Recipe Name:</label><br>
-                    <input type="text" id="recipeName" name="recipeName"><br>
-                    <label for="recipeIngredients">Ingredients:</label><br>
-                    <textarea id="recipeIngredients" name="recipeIngredients" rows="4" cols="50"></textarea><br>
-                    <label for="recipeInstructions">Instructions:</label><br>
-                    <textarea id="recipeInstructions" name="recipeInstructions" rows="4" cols="50"></textarea><br>
-                    <input type="submit" value="Submit">
-                </form>
-            </div>
         </section>
         <section id="lunch">
             <h2>Lunch</h2>
@@ -45,19 +32,6 @@
                 <li><a href="recipes/sandwich.html">Sandwich</a></li>
                 <li><a href="recipes/salad.html">Salad</a></li>
             </ul>
-            <button class="addRecipeBtn">Add Recipe</button>
-            <div class="addRecipeForm" style="display:none;">
-                <h2>Add Recipe</h2>
-                <form class="recipeForm">
-                    <label for="recipeName">Recipe Name:</label><br>
-                    <input type="text" id="recipeName" name="recipeName"><br>
-                    <label for="recipeIngredients">Ingredients:</label><br>
-                    <textarea id="recipeIngredients" name="recipeIngredients" rows="4" cols="50"></textarea><br>
-                    <label for="recipeInstructions">Instructions:</label><br>
-                    <textarea id="recipeInstructions" name="recipeInstructions" rows="4" cols="50"></textarea><br>
-                    <input type="submit" value="Submit">
-                </form>
-            </div>
         </section>
         <section id="dinner">
             <h2>Dinner</h2>
@@ -65,19 +39,6 @@
                 <li><a href="recipes/pasta.html">Pasta</a></li>
                 <li><a href="recipes/stirfry.html">Stir Fry</a></li>
             </ul>
-            <button class="addRecipeBtn">Add Recipe</button>
-            <div class="addRecipeForm" style="display:none;">
-                <h2>Add Recipe</h2>
-                <form class="recipeForm">
-                    <label for="recipeName">Recipe Name:</label><br>
-                    <input type="text" id="recipeName" name="recipeName"><br>
-                    <label for="recipeIngredients">Ingredients:</label><br>
-                    <textarea id="recipeIngredients" name="recipeIngredients" rows="4" cols="50"></textarea><br>
-                    <label for="recipeInstructions">Instructions:</label><br>
-                    <textarea id="recipeInstructions" name="recipeInstructions" rows="4" cols="50"></textarea><br>
-                    <input type="submit" value="Submit">
-                </form>
-            </div>
         </section>
         <section id="desserts">
             <h2>Desserts</h2>
@@ -85,24 +46,27 @@
                 <li><a href="recipes/cake.html">Cake</a></li>
                 <li><a href="recipes/cookies.html">Cookies</a></li>
             </ul>
-            <button class="addRecipeBtn">Add Recipe</button>
-            <div class="addRecipeForm" style="display:none;">
-                <h2>Add Recipe</h2>
-                <form class="recipeForm">
-                    <label for="recipeName">Recipe Name:</label><br>
-                    <input type="text" id="recipeName" name="recipeName"><br>
-                    <label for="recipeIngredients">Ingredients:</label><br>
-                    <textarea id="recipeIngredients" name="recipeIngredients" rows="4" cols="50"></textarea><br>
-                    <label for="recipeInstructions">Instructions:</label><br>
-                    <textarea id="recipeInstructions" name="recipeInstructions" rows="4" cols="50"></textarea><br>
-                    <input type="submit" value="Submit">
-                </form>
-            </div>
         </section>
     </main>
+
+    <button class="addRecipeBtn">Add Recipe</button>
+    <div class="addRecipeForm" style="display:none;">
+        <h2>Add Recipe</h2>
+        <form id="recipeForm">
+            <label for="recipeName">Recipe Name:</label><br>
+            <input type="text" id="recipeName" name="recipeName"><br>
+            <label for="recipeIngredients">Ingredients:</label><br>
+            <textarea id="recipeIngredients" name="recipeIngredients" rows="4" cols="50"></textarea><br>
+            <label for="recipeInstructions">Instructions:</label><br>
+            <textarea id="recipeInstructions" name="recipeInstructions" rows="4" cols="50"></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
     <footer>
         <p>&copy; 2024 Recipe Book</p>
     </footer>
+
 
     <script src="scripts.js"></script>
 </body>

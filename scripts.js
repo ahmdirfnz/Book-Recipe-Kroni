@@ -3,3 +3,5 @@ document.querySelectorAll('.addRecipeBtn').forEach(function(button) {
         this.nextElementSibling.style.display = 'block';
     });
 });
+
+  
