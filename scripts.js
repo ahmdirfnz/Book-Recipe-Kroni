@@ -7,3 +7,4 @@ document.querySelectorAll('.addRecipeBtn').forEach(function(button) {
 function goBack() {
     window.history.back();
 }
+document.getElementById("currentYear").innerHTML = new Date().getFullYear();
