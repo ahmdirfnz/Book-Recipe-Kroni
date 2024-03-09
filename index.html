@@ -2,72 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Book</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+    <div class="container">
         <h1>Recipe Book</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#breakfast">Breakfast</a></li>
-            <li><a href="#lunch">Lunch</a></li>
-            <li><a href="#dinner">Dinner</a></li>
-            <li><a href="#desserts">Desserts</a></li>
-        </ul>
-    </nav>
-    <main>
-        <section id="breakfast">
-            <h2>Breakfast</h2>
-            <ul>
-                <li><a href="pancakes.html">Pancakes</a></li>
-                <li><a href="omelette.html">Omelette</a></li>
-            </ul>
-        </section>
-        <section id="lunch">
-            <h2>Lunch</h2>
-            <ul>
-                <li><a href="recipes/sandwich.html">Sandwich</a></li>
-                <li><a href="recipes/salad.html">Salad</a></li>
-            </ul>
-        </section>
-        <section id="dinner">
-            <h2>Dinner</h2>
-            <ul>
-                <li><a href="recipes/pasta.html">Pasta</a></li>
-                <li><a href="recipes/stirfry.html">Stir Fry</a></li>
-            </ul>
-        </section>
-        <section id="desserts">
-            <h2>Desserts</h2>
-            <ul>
-                <li><a href="recipes/cake.html">Cake</a></li>
-                <li><a href="recipes/cookies.html">Cookies</a></li>
-            </ul>
-        </section>
-    </main>
-
-    <button class="addRecipeBtn">Add Recipe</button>
-    <div class="addRecipeForm" style="display:none;">
-        <h2>Add Recipe</h2>
-        <form id="recipeForm">
-            <label for="recipeName">Recipe Name:</label><br>
-            <input type="text" id="recipeName" name="recipeName"><br>
-            <label for="recipeIngredients">Ingredients:</label><br>
-            <textarea id="recipeIngredients" name="recipeIngredients" rows="4" cols="50"></textarea><br>
-            <label for="recipeInstructions">Instructions:</label><br>
-            <textarea id="recipeInstructions" name="recipeInstructions" rows="4" cols="50"></textarea><br>
-            <input type="submit" value="Submit">
+        <form id="recipe-form">
+            <input type="text" id="recipe-name" placeholder="Recipe Name" required>
+            <select id="recipe-category" required>
+                <option value="">Select Category</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Dessert">Dessert</option>
+            </select>
+            <textarea id="recipe-ingredients" placeholder="Ingredients" required></textarea>
+            <button type="submit">Save Recipe</button>
         </form>
+        <div id="recipe-list"></div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 Recipe Book</p>
-    </footer>
-
-
-    <script src="scripts.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <!-- <script src="firebase-init.js"></script> -->
+    <script src="script.js"></script>
 </body>
 </html>
