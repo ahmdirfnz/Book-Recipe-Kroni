@@ -4,57 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Book</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <h1>Recipe Book</h1>
     </header>
-    <nav>
-        <ul>
-            <li><a href="#breakfast">Breakfast</a></li>
-            <li><a href="#lunch">Lunch</a></li>
-            <li><a href="#dinner">Dinner</a></li>
-            <li><a href="#desserts">Desserts</a></li>
-        </ul>
-    </nav>
     <main>
-        <section id="breakfast">
-            <h2>Breakfast</h2>
-            <ul>
-                <li><a href="pancakes.html">Pancakes</a></li>
-                <li><a href="omelette.html">Omelette</a></li>
-            </ul>
-        </section>
-        <section id="lunch">
-            <h2>Lunch</h2>
-            <ul>
-                <li><a href="recipes/sandwich.html">Sandwich</a></li>
-                <li><a href="recipes/salad.html">Salad</a></li>
-            </ul>
-        </section>
-        <section id="dinner">
-            <h2>Dinner</h2>
-            <ul>
-                <li><a href="recipes/pasta.html">Pasta</a></li>
-                <li><a href="recipes/stirfry.html">Stir Fry</a></li>
-            </ul>
-        </section>
-        <section id="desserts">
-            <h2>Desserts</h2>
-            <ul>
-                <li><a href="recipes/cake.html">Cake</a></li>
-                <li><a href="recipes/cookies.html">Cookies</a></li>
-            </ul>
-        </section>
+        <!-- Sections for displaying recipes will be dynamically updated -->
     </main>
-
+<div class="button-container">
     <button class="addRecipeBtn">Add Recipe</button>
+</div>
     <div class="addRecipeForm" style="display:none;">
         <h2>Add Recipe</h2>
         <form id="recipeForm">
             <label for="recipeName">Recipe Name:</label><br>
             <input type="text" id="recipeName" name="recipeName"><br>
+            <label for="recipeCategory">Category:</label><br>
+            <select id="recipeCategory" name="recipeCategory">
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Dessert">Dessert</option>
+            </select><br>
             <label for="recipeIngredients">Ingredients:</label><br>
             <textarea id="recipeIngredients" name="recipeIngredients" rows="4" cols="50"></textarea><br>
             <label for="recipeInstructions">Instructions:</label><br>
@@ -64,10 +37,10 @@
     </div>
 
     <footer>
-        &copy; <span id="currentYear"></span> Recipe Book</p>
+        &copy; <span id="currentYear"></span> Recipe Book
     </footer>
 
 
-    <script src="scripts.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>

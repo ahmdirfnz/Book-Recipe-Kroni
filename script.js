@@ -1,9 +1,10 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const recipeForm = document.getElementById('recipe-form');
-  const recipeList = document.getElementById('recipe-list');
+// Import the functions you need from the SDKs you need
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js';
+import { getFirestore, collection, addDoc, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js';
 
-  // Initialize Firebase
-  const firebaseConfig = {
+// TODO: Replace the following with your app's Firebase project configuration
+// Your web app's Firebase configuration
+const firebaseConfig = {
     apiKey: "AIzaSyCl6T4yMizGFHM0TLzlum2e_hRnFL_A8CA",
     authDomain: "book-recipe-kroni.firebaseapp.com",
     projectId: "book-recipe-kroni",
@@ -11,69 +12,79 @@ document.addEventListener('DOMContentLoaded', function() {
     messagingSenderId: "8274186383",
     appId: "1:8274186383:web:dea74fb444e6d3f8b060fa"
   };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
 
-  // Function to save recipe to Firestore
-  recipeForm.addEventListener('submit', function(e) {
-      e.preventDefault();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-      const recipeName = document.getElementById('recipe-name').value;
-      const recipeCategory = document.getElementById('recipe-category').value;
-      const recipeIngredients = document.getElementById('recipe-ingredients').value;
+document.addEventListener('DOMContentLoaded', function() {
+    const recipeForm = document.getElementById('recipeForm');
+    const mainSection = document.querySelector('main');
+    const addRecipeBtn = document.querySelector('.addRecipeBtn');
+    const addRecipeForm = document.querySelector('.addRecipeForm');
 
-      // Add recipe to Firestore
-      db.collection("recipes").add({
-          name: recipeName,
-          category: recipeCategory,
-          ingredients: recipeIngredients
-      }).then(() => {
-          console.log("Recipe saved!");
-          // Clear form inputs after saving
-          recipeForm.reset();
-          // Display recipes of the selected category
-          displayRecipesByCategory(recipeCategory);
-      }).catch(error => {
-          console.error("Error saving recipe: ", error);
-      });
-  });
+        // Toggle form visibility
+        addRecipeBtn.addEventListener('click', function() {
+            if (addRecipeForm.style.display === 'none' || addRecipeForm.style.display === '') {
+                addRecipeForm.style.display = 'block';
+            } else {
+                addRecipeForm.style.display = 'none';
+            }
+        });
 
-  // Function to display recipes based on category
-  function displayRecipesByCategory(category) {
-      recipeList.innerHTML = ''; // Clear existing recipes
+        recipeForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+        
+            const recipeName = document.getElementById('recipeName').value;
+            const recipeCategory = document.getElementById('recipeCategory').value;
+            const recipeIngredients = document.getElementById('recipeIngredients').value;
+            const recipeInstructions = document.getElementById('recipeInstructions').value;
+        
+            try {
+                await addDoc(collection(db, "recipes"), {
+                    name: recipeName,
+                    category: recipeCategory,
+                    ingredients: recipeIngredients,
+                    instructions: recipeInstructions
+                });
+                console.log("Recipe saved!");
+                recipeForm.reset();
+                displayRecipes(); // Refresh the recipes display
+                addRecipeForm.style.display = 'none'; // Close the form
+            } catch (error) {
+                console.error("Error saving recipe: ", error);
+            }
+        });
+        
 
-      // Query Firestore for recipes of the selected category
-      db.collection("recipes").where("category", "==", category)
-          .get()
-          .then(querySnapshot => {
-              querySnapshot.forEach(doc => {
-                  const recipeData = doc.data();
-                  const recipeItem = `
-                      <div class="recipe-item">
-                          <h3>${recipeData.name}</h3>
-                          <p><strong>Category:</strong> ${recipeData.category}</p>
-                          <p><strong>Ingredients:</strong> ${recipeData.ingredients}</p>
-                      </div>
-                  `;
-                  recipeList.insertAdjacentHTML('beforeend', recipeItem);
-              });
-          })
-          .catch(error => {
-              console.log("Error getting recipes: ", error);
-          });
-  }
+        async function displayRecipes() {
+            const categories = ['Breakfast', 'Lunch', 'Dinner', 'Dessert'];
+            mainSection.innerHTML = ''; // Clear existing content
+        
+            for (const category of categories) {
+                const section = document.createElement('section');
+                section.id = category.toLowerCase();
+                section.innerHTML = `<h2>${category}</h2><div class="recipes-container"></div>`;
+                mainSection.appendChild(section);
+        
+                const q = query(collection(db, "recipes"), where("category", "==", category));
+                const querySnapshot = await getDocs(q);
+                querySnapshot.forEach((doc) => {
+                    const recipe = doc.data();
+                    const card = document.createElement('div');
+                    card.classList.add('recipe-card');
+                    card.innerHTML = `
+                        <h3>${recipe.name}</h3>
+                        <p><strong>Ingredients:</strong> ${recipe.ingredients}</p>
+                        <p><strong>Instructions:</strong> ${recipe.instructions}</p>
+                    `;
+                    section.querySelector('.recipes-container').appendChild(card);
+                });
+            }
+        }
+        
 
-  // Event listener for category dropdown change
-  document.getElementById('recipe-category').addEventListener('change', function() {
-      const selectedCategory = this.value;
-      if (selectedCategory) {
-          displayRecipesByCategory(selectedCategory);
-      }
-  });
-
-  // Initial display of recipes
-  const initialCategory = document.getElementById('recipe-category').value;
-  if (initialCategory) {
-      displayRecipesByCategory(initialCategory);
-  }
+    displayRecipes();
 });
+
+document.getElementById('currentYear').textContent = new Date().getFullYear();
